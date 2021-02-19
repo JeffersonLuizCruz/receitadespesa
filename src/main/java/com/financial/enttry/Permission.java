@@ -21,7 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Getter @Setter
-@Entity
+@Entity(name = "permission")
 public class Permission implements Serializable{
 	private static final long serialVersionUID = 1L;
 

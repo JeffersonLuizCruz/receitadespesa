@@ -1,6 +1,7 @@
 package com.financial.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -40,9 +41,9 @@ public class CategoryController {
 	
 	@GetMapping(value = "/{id}")
 	public  ResponseEntity<Category> getById(@PathVariable Long id) {
-		Category categoria = categoryRepository.getOne(id);
+		Optional<Category> category = categoryRepository.findById(id);
 		
-		return null == categoria ? ResponseEntity.notFound().build() : ResponseEntity.ok(categoria);
+		return null == category.get() ? ResponseEntity.notFound().build() : ResponseEntity.ok(category.get());
 	}
 	
 	@GetMapping

@@ -21,7 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Getter @Setter
-@Entity
+@Entity(name = "category")
 public class Category implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -29,7 +29,7 @@ public class Category implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false, unique = true)
+	@Column(length = 50, nullable = false, unique = true)
 	private String name;
 	
 	@OneToMany(mappedBy = "category")

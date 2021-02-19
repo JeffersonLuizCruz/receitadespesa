@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Getter @Setter
-@Entity
+@Entity(name = "person")
 public class Person implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +32,10 @@ public class Person implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(length = 50, nullable = false)
 	private String name;
+	
+	@Column(nullable = false)
 	private boolean active;
 	
 	@Embedded

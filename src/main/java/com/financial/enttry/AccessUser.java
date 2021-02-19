@@ -23,7 +23,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Getter @Setter
-@Entity
+@Entity(name = "access_user")
 public class AccessUser implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -31,13 +31,13 @@ public class AccessUser implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(length = 100, nullable = false)
+	@Column(length = 100)
 	private String name;
 	
 	@Column(length = 100, nullable = false, unique = true)
 	private String email;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String password;
 
 	@ManyToMany(fetch = FetchType.EAGER)
