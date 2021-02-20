@@ -47,7 +47,7 @@ public class CategoryController {
 	}
 	
 	@GetMapping
-	public List<Category> listar() {
+	public List<Category> listAll() {
 		return categoryRepository.findAll();
 	}
 
