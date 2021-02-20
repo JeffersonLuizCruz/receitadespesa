@@ -6,4 +6,6 @@ import com.financial.enttry.Person;
 
 public interface PersonRepository extends JpaRepository<Person, Long>{
 
+	Person existsById(boolean active);
+
 }

@@ -63,5 +63,8 @@ public class Entry implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "person_id")
 	private Person person;
+	
+	
+	
 
 }
