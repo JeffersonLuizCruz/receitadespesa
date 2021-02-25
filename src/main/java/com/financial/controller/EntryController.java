@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,9 +37,18 @@ public class EntryController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(saveEntry);
 	}
 	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<Entry> update(@PathVariable Long id, @RequestBody Entry entry) {
+		try {
+			Entry updateEntry = entryService.update(id, entry);
+			return ResponseEntity.ok(updateEntry);
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Entry> buscarPeloCodigo(@PathVariable Long id) {
-		
 		Entry entry = entryService.getById(id);
 		
 		return entry != null ? ResponseEntity.ok(entry) : ResponseEntity.notFound().build();
