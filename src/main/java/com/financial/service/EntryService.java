@@ -50,7 +50,7 @@ public class EntryService implements EntryInterfaces{
 		} catch (NullPointerException e) {
 			
 		}
-		BeanUtils.copyProperties(entry, saveByEntry, "id");
+		BeanUtils.copyProperties(entry, saveByEntry, "id", "paymentDate", "expirationDate");
 		return entryRepository.save(saveByEntry);
 	}
 

@@ -15,13 +15,13 @@ import lombok.Setter;
 public class PersonAddress implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Column(length = 150 ,nullable = false, unique = true)
+	@Column(length = 150)
 	private String street;
 	
-	@Column(nullable = false, unique = true)
+
 	private Long number;
 	
-	@Column(length = 150 ,nullable = false, unique = true)
+	@Column(length = 150)
 	private String city;
 	
 	@Column(columnDefinition = "text")

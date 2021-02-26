@@ -38,14 +38,12 @@ public class Entry implements Serializable{
 	private String description;
 
 
-	@Column(nullable = false)
+	@Column(nullable = false, updatable = true)
 	private LocalDate expirationDate;
 
-	@Column(nullable = false)
 	private LocalDate paymentDate;
 
 
-	@Column(nullable = false)
 	private BigDecimal amount;
 
 	@Column(columnDefinition = "text")
