@@ -6,7 +6,8 @@ import org.springframework.data.domain.Pageable;
 import com.financial.dto.PersonRequestDto;
 import com.financial.entity.Person;
 
-public interface PersonInterfaces {
+
+public interface PersonServiceInterfaces {
 	
 	
 	public Person save(Person person);

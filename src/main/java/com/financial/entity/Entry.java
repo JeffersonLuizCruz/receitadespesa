@@ -24,7 +24,7 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(of = "id")
 @Getter @Setter
 @Entity(name = "entry")
 public class Entry implements Serializable{

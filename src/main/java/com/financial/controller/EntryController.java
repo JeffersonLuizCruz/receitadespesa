@@ -1,3 +1,4 @@
+/*
 package com.financial.controller;
 
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +24,7 @@ import event.EventLocationHeader;
 @RequestMapping(value = "entries")
 public class EntryController {
 
-	@Autowired EntryService entryService;
+	@Autowired EntryServiceInterfaces entryService;
 	@Autowired private ApplicationEventPublisher eventPublisher;
 	
 	
@@ -54,3 +55,4 @@ public class EntryController {
 		return entry != null ? ResponseEntity.ok(entry) : ResponseEntity.notFound().build();
 	}
 }
+*/

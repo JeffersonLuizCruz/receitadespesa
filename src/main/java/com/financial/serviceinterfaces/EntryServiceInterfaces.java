@@ -7,7 +7,7 @@ import com.financial.dto.EntryRequestDto;
 import com.financial.dto.EntryResponseDto;
 import com.financial.entity.Entry;
 
-public interface EntryInterfaces {
+public interface EntryServiceInterfaces {
 	
 	
 	public Entry save(Entry entry);

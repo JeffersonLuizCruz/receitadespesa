@@ -13,10 +13,10 @@ import com.financial.dto.PersonRequestDto;
 import com.financial.entity.Person;
 import com.financial.exceptions.NotFoundException;
 import com.financial.repository.PersonRepository;
-import com.financial.serviceinterfaces.PersonInterfaces;
+import com.financial.serviceinterfaces.PersonServiceInterfaces;
 
 @Service
-public class PersonService implements PersonInterfaces{
+public class PersonServiceImpl implements PersonServiceInterfaces{
 
 	@Autowired private PersonRepository personRepository;
 	
@@ -47,8 +47,7 @@ public class PersonService implements PersonInterfaces{
 
 	@Override
 	public Page<Person> listAll(PersonRequestDto personRequestDto, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return pessoaRepository.filtrar(pessoaFilter, pageable);
+		return null;
 	}
 
 	@Override

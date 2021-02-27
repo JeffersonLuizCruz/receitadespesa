@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.financial.dto.PersonRequestDto;
 import com.financial.entity.Person;
-import com.financial.service.PersonService;
+import com.financial.serviceinterfaces.PersonServiceInterfaces;
 
 import event.EventLocationHeader;
 
@@ -26,7 +26,7 @@ import event.EventLocationHeader;
 @RequestMapping(value = "persons")
 public class PersonController {
 	
-	@Autowired PersonService personService;
+	@Autowired PersonServiceInterfaces personService;
 	@Autowired private ApplicationEventPublisher eventPublisher;
 	
 	
@@ -57,7 +57,7 @@ public class PersonController {
 	}
 	
 	@GetMapping
-	public Page<Person> listar(PersonRequestDto personRequestDto, Pageable pageable) {
+	public Page<Person> listAll(PersonRequestDto personRequestDto, Pageable pageable) {
 		
 		return personService.listAll(personRequestDto, pageable);
 		

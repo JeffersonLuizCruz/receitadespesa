@@ -1,4 +1,6 @@
 package com.financial.service;
+/*
+package com.financial.service;
 
 import java.util.Optional;
 
@@ -93,3 +95,4 @@ public class EntryService implements EntryInterfaces{
 
 
 }
+*/

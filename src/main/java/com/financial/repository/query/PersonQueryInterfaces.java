@@ -6,7 +6,9 @@ import org.springframework.data.domain.Pageable;
 import com.financial.dto.PersonRequestDto;
 import com.financial.entity.Person;
 
+@Deprecated
 public interface PersonQueryInterfaces {
-	public Page<Person> filter(PersonRequestDto personRequestDto, Pageable pageable);
+	
+	public Page<Person> findByPerson(PersonRequestDto personRequestDto, Pageable pageable);
 
 }

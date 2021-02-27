@@ -21,7 +21,7 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(of = "id")
 @Getter @Setter
 @Entity(name = "access_user")
 public class AccessUser implements Serializable{

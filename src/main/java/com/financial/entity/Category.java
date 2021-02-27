@@ -19,7 +19,7 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(of = "id")
 @Getter @Setter
 @Entity(name = "category")
 public class Category implements Serializable{
