@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.financial.dto.EntryRequestDto;
 import com.financial.dto.EntryResponseDto;
-import com.financial.enttry.Entry;
-import com.financial.enttry.Person;
+import com.financial.entity.Entry;
+import com.financial.entity.Person;
 import com.financial.exceptions.PersonException;
-import com.financial.interfaces.EntryInterfaces;
 import com.financial.repository.EntryRepository;
 import com.financial.repository.PersonRepository;
-
+import com.financial.serviceinterfaces.EntryInterfaces;
 import com.financial.exceptions.NotFoundException;
 
 @Service

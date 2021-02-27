@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.financial.enttry.Category;
-import com.financial.enttry.Entry;
-import com.financial.enttry.Person;
+import com.financial.entity.Category;
+import com.financial.entity.Entry;
+import com.financial.entity.Person;
 import com.financial.enums.TypeEntry;
 
 @SpringBootTest

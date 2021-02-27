@@ -1,4 +1,4 @@
-package com.financial.enttry;
+package com.financial.entity;
 
 import java.io.Serializable;
 

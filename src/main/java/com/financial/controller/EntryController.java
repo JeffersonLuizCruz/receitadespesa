@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.financial.enttry.Entry;
+import com.financial.entity.Entry;
 import com.financial.service.EntryService;
 
 import event.EventLocationHeader;
@@ -48,7 +48,7 @@ public class EntryController {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Entry> buscarPeloCodigo(@PathVariable Long id) {
+	public ResponseEntity<Entry> getById(@PathVariable Long id) {
 		Entry entry = entryService.getById(id);
 		
 		return entry != null ? ResponseEntity.ok(entry) : ResponseEntity.notFound().build();

@@ -1,14 +1,16 @@
-package com.financial.enttry;
+package com.financial.entity;
 
 import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -21,18 +23,25 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Getter @Setter
-@Entity(name = "category")
-public class Category implements Serializable{
+@Entity(name = "access_user")
+public class AccessUser implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(length = 50, nullable = false, unique = true)
+
+	@Column(length = 100)
 	private String name;
 	
-	@OneToMany(mappedBy = "category")
-	private List<Entry> entry;
+	@Column(length = 100, nullable = false, unique = true)
+	private String email;
+	
+	@Column(nullable = false, unique = true)
+	private String password;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable
+	private List<Permission> permission;
 
 }

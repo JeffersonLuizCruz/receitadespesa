@@ -1,11 +1,11 @@
-package com.financial.interfaces;
+package com.financial.serviceinterfaces;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.financial.dto.EntryRequestDto;
 import com.financial.dto.EntryResponseDto;
-import com.financial.enttry.Entry;
+import com.financial.entity.Entry;
 
 public interface EntryInterfaces {
 	

@@ -10,10 +10,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.financial.dto.PersonRequestDto;
-import com.financial.enttry.Person;
+import com.financial.entity.Person;
 import com.financial.exceptions.NotFoundException;
-import com.financial.interfaces.PersonInterfaces;
 import com.financial.repository.PersonRepository;
+import com.financial.serviceinterfaces.PersonInterfaces;
 
 @Service
 public class PersonService implements PersonInterfaces{
@@ -33,6 +33,7 @@ public class PersonService implements PersonInterfaces{
 		if(saveByPerson == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
+		
 		BeanUtils.copyProperties(person, saveByPerson, "id");
 		
 		return personRepository.save(saveByPerson);
@@ -47,7 +48,7 @@ public class PersonService implements PersonInterfaces{
 	@Override
 	public Page<Person> listAll(PersonRequestDto personRequestDto, Pageable pageable) {
 		// TODO Auto-generated method stub
-		return null;
+		return pessoaRepository.filtrar(pessoaFilter, pageable);
 	}
 
 	@Override

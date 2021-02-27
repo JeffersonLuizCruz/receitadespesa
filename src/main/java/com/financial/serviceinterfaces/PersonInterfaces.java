@@ -1,10 +1,10 @@
-package com.financial.interfaces;
+package com.financial.serviceinterfaces;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.financial.dto.PersonRequestDto;
-import com.financial.enttry.Person;
+import com.financial.entity.Person;
 
 public interface PersonInterfaces {
 	
