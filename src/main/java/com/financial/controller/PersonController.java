@@ -4,8 +4,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.financial.dto.PersonRequestDto;
 import com.financial.entity.Person;
 import com.financial.serviceinterfaces.PersonServiceInterfaces;
 
@@ -56,11 +53,5 @@ public class PersonController {
 		
 	}
 	
-	@GetMapping
-	public Page<Person> listAll(PersonRequestDto personRequestDto, Pageable pageable) {
-		
-		return personService.listAll(personRequestDto, pageable);
-		
-	}
 
 }

@@ -1,3 +1,6 @@
+/**
+ * Bug
+ * 
 package com.financial.repository.query;
 
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ import org.springframework.data.domain.Pageable;
 
 import org.springframework.util.ObjectUtils;
 
-import com.financial.dto.PersonRequestDto;
+import com.financial.dto.PageRequestModel;
 import com.financial.entity.Person;
 
 @Deprecated
@@ -28,7 +31,7 @@ public class PersonQueryImpl implements PersonQueryInterfaces{
 	private EntityManager entityManager;
 
 	@Override
-	public Page<Person> findByPerson(PersonRequestDto personRequestDto, Pageable pageable) {
+	public Page<Person> findByPerson(PageRequestModel personRequestDto, Pageable pageable) {
 		
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		
@@ -47,7 +50,7 @@ public class PersonQueryImpl implements PersonQueryInterfaces{
 	}
 	
 
-	private Predicate[] criarRestricoes(PersonRequestDto personRequestDto, CriteriaBuilder criteriaBuilder, Root<Person> root) {
+	private Predicate[] criarRestricoes(PageRequestModel personRequestDto, CriteriaBuilder criteriaBuilder, Root<Person> root) {
 		
 		List<Predicate> listaPredicates = new ArrayList<>();
 		
@@ -76,7 +79,7 @@ public class PersonQueryImpl implements PersonQueryInterfaces{
 		typedQuery.setMaxResults(totalRegistroPorPagina);
 	}
 	
-	private Long total(PersonRequestDto pessoaFilter) {
+	private Long total(PageRequestModel pessoaFilter) {
 		
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		
@@ -95,3 +98,4 @@ public class PersonQueryImpl implements PersonQueryInterfaces{
 	}
 
 }
+*/

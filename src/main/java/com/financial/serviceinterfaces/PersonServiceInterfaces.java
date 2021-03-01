@@ -1,10 +1,8 @@
 package com.financial.serviceinterfaces;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
-import com.financial.dto.PersonRequestDto;
 import com.financial.entity.Person;
+import com.financial.entity.page.PageModel;
+import com.financial.entity.page.PageRequestModel;
 
 
 public interface PersonServiceInterfaces {
@@ -16,7 +14,7 @@ public interface PersonServiceInterfaces {
 
 	public Person getById(Long id);
 	
-	public Page<Person> listAll(PersonRequestDto personRequestDto, Pageable pageable);
+	public PageModel<Person> listAllByOnLazyModel(PageRequestModel prm);
 	
 	public void delete(Long id);
 	

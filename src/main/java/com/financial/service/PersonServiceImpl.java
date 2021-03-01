@@ -4,13 +4,14 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import com.financial.dto.PersonRequestDto;
 import com.financial.entity.Person;
+import com.financial.entity.page.PageModel;
+import com.financial.entity.page.PageRequestModel;
 import com.financial.exceptions.NotFoundException;
 import com.financial.repository.PersonRepository;
 import com.financial.serviceinterfaces.PersonServiceInterfaces;
@@ -30,10 +31,6 @@ public class PersonServiceImpl implements PersonServiceInterfaces{
 	public Person update(Long id, Person person) {
 		Person saveByPerson = getById(id);
 		
-		if(saveByPerson == null) {
-			throw new EmptyResultDataAccessException(1);
-		}
-		
 		BeanUtils.copyProperties(person, saveByPerson, "id");
 		
 		return personRepository.save(saveByPerson);
@@ -46,8 +43,19 @@ public class PersonServiceImpl implements PersonServiceInterfaces{
 	}
 
 	@Override
-	public Page<Person> listAll(PersonRequestDto personRequestDto, Pageable pageable) {
-		return null;
+	public PageModel<Person> listAllByOnLazyModel(PageRequestModel prm) {
+		Pageable pageable = prm.toSpringPageRequest();
+		Specification<Person> spec = UserSpecification.search(prm.getSearch());
+		
+		Page<Person> page = personRepository.findAll(spec, pageable);
+		
+		PageModel<Person> pm = new PageModel<>(
+							(int)page.getTotalElements(),
+							page.getSize(),
+							page.getTotalPages(),
+							page.getContent());
+		
+		return pm;
 	}
 
 	@Override

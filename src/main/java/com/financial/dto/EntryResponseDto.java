@@ -3,7 +3,7 @@ package com.financial.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import com.financial.enums.TypeEntry;
+import com.financial.entity.enums.TypeEntry;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

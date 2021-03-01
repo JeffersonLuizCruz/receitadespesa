@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.financial.entity.Category;
 import com.financial.entity.Entry;
 import com.financial.entity.Person;
-import com.financial.enums.TypeEntry;
+import com.financial.entity.enums.TypeEntry;
 
 @SpringBootTest
 public class EntryTest {

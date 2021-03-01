@@ -1,4 +1,4 @@
-package com.financial.enums;
+package com.financial.entity.enums;
 
 public enum TypeEntry {
 	
