@@ -15,6 +15,7 @@ import com.financial.entity.page.PageRequestModel;
 import com.financial.exceptions.NotFoundException;
 import com.financial.repository.PersonRepository;
 import com.financial.serviceinterfaces.PersonServiceInterfaces;
+import com.financial.specification.PersonSpecification;
 
 @Service
 public class PersonServiceImpl implements PersonServiceInterfaces{
@@ -45,7 +46,7 @@ public class PersonServiceImpl implements PersonServiceInterfaces{
 	@Override
 	public PageModel<Person> listAllByOnLazyModel(PageRequestModel prm) {
 		Pageable pageable = prm.toSpringPageRequest();
-		Specification<Person> spec = UserSpecification.search(prm.getSearch());
+		Specification<Person> spec = PersonSpecification.search(prm.getSearch());
 		
 		Page<Person> page = personRepository.findAll(spec, pageable);
 		

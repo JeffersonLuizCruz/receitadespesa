@@ -1,5 +1,7 @@
 package com.financial.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financial.entity.Person;
+import com.financial.entity.page.PageModel;
+import com.financial.entity.page.PageRequestModel;
 import com.financial.serviceinterfaces.PersonServiceInterfaces;
 
 import event.EventLocationHeader;
@@ -52,6 +57,15 @@ public class PersonController {
 		return ResponseEntity.ok(person);
 		
 	}
+	
+	@GetMapping
+	public ResponseEntity<PageModel<Person>> listAll(
+			@RequestParam Map<String, String> params){
+			PageRequestModel pr = new PageRequestModel(params);
+			PageModel<Person> pm = personService.listAllByOnLazyModel(pr);
+			
+			return ResponseEntity.ok(pm);
+		}
 	
 
 }
