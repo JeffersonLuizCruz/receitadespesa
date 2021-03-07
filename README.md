@@ -1,4 +1,4 @@
 API-RESTful-ReceitaDespesa
 
-Aplicação de sistema financeiro 
+Essa é uma pequena aplicação de lançamento de Receita e Despesa.
 
