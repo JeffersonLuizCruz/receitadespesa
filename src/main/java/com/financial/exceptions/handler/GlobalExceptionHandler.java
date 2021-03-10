@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.financial.exceptions.BadRequestException;
 import com.financial.exceptions.NotFoundException;
 
 @ControllerAdvice
@@ -32,6 +33,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 		ApiError error = new ApiError(HttpStatus.NOT_FOUND.value(), ex.getMessage(), new Date());
 		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+		
+	}
+	
+	@ExceptionHandler(BadRequestException.class)// Método personalizado
+	public ResponseEntity<ApiError> handlerBadRequestException(BadRequestException ex){
+		
+		ApiError error = new ApiError(HttpStatus.BAD_REQUEST.value(), ex.getMessage(), new Date());
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(error);
 		
 	}
 	

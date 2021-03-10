@@ -3,6 +3,7 @@ package com.financial.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.financial.dto.ActivePersonRequestDto;
 import com.financial.entity.Person;
 import com.financial.entity.page.PageModel;
 import com.financial.entity.page.PageRequestModel;
@@ -51,11 +54,10 @@ public class PersonController {
 		
 	}
 	
-	@PutMapping(value = "/{id}/active")
-	public void updateActivePerson(@PathVariable Long id, @RequestBody Boolean active) {
+	@PatchMapping(value = "/{id}/active")
+	public void updateActivePerson(@PathVariable Long id,@Valid @RequestBody ActivePersonRequestDto active) {
 		Person person = personService.getById(id);
-		
-		person.setActive(active);
+		person.setActive(active.transformToActive());
 		
 		personService.save(person);
 		
