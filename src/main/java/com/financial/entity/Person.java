@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,8 +36,7 @@ public class Person implements Serializable{
 	@Column(length = 50)
 	private String name;
 	
-	
-	private boolean active;
+	private Boolean active;
 	
 	@Embedded
 	private PersonAddress address;

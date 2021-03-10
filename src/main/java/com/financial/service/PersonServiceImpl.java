@@ -61,7 +61,8 @@ public class PersonServiceImpl implements PersonServiceInterfaces{
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
+		getById(id);
+		personRepository.deleteById(id);
 		
 	}
 
