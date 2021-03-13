@@ -9,6 +9,4 @@ import com.financial.entity.Person;
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long>, JpaSpecificationExecutor<Person>{
 
-	Person existsById(boolean active);
-
 }

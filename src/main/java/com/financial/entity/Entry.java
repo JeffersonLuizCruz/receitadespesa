@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.financial.entity.enums.TypeEntry;
 
 import lombok.AllArgsConstructor;
@@ -58,6 +59,7 @@ public class Entry implements Serializable{
 	@JoinColumn(name = "category_id")
 	private Category category;
 
+	@Getter(onMethod_= @JsonIgnore)
 	@ManyToOne
 	@JoinColumn(name = "person_id")
 	private Person person;

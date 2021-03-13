@@ -32,7 +32,7 @@ import event.EventLocationHeader;
 @RequestMapping(value = "persons")
 public class PersonController {
 	
-	@Autowired PersonServiceInterfaces personService;
+	@Autowired private PersonServiceInterfaces personService;
 	@Autowired private ApplicationEventPublisher eventPublisher;
 	
 	

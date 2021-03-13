@@ -1,4 +1,3 @@
-/*
 package com.financial.controller;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financial.entity.Entry;
-import com.financial.service.EntryService;
+import com.financial.service.EntryServiceImpl;
 
 import event.EventLocationHeader;
 
@@ -24,7 +23,7 @@ import event.EventLocationHeader;
 @RequestMapping(value = "entries")
 public class EntryController {
 
-	@Autowired EntryServiceInterfaces entryService;
+	@Autowired private EntryServiceImpl entryService;
 	@Autowired private ApplicationEventPublisher eventPublisher;
 	
 	
@@ -55,4 +54,3 @@ public class EntryController {
 		return entry != null ? ResponseEntity.ok(entry) : ResponseEntity.notFound().build();
 	}
 }
-*/

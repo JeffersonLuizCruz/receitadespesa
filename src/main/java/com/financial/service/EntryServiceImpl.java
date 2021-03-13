@@ -1,6 +1,5 @@
 package com.financial.service;
-/*
-package com.financial.service;
+
 
 import java.util.Optional;
 
@@ -14,26 +13,26 @@ import com.financial.dto.EntryRequestDto;
 import com.financial.dto.EntryResponseDto;
 import com.financial.entity.Entry;
 import com.financial.entity.Person;
-import com.financial.exceptions.PersonException;
 import com.financial.repository.EntryRepository;
 import com.financial.repository.PersonRepository;
-import com.financial.serviceinterfaces.EntryInterfaces;
+import com.financial.serviceinterfaces.EntryServiceInterfaces;
+import com.financial.exceptions.BadRequestException;
 import com.financial.exceptions.NotFoundException;
 
 @Service
-public class EntryService implements EntryInterfaces{
+public class EntryServiceImpl implements EntryServiceInterfaces{
 
 	
-	@Autowired PersonRepository personRepository;
-	@Autowired EntryRepository entryRepository;
+	@Autowired private PersonRepository personRepository;
+	@Autowired private EntryRepository entryRepository;
 	
 	
 	@Override
 	public Entry save(Entry entry) {
-		Person person = personRepository.existsById(entry.getPerson().isActive());
+		Optional<Person> person = personRepository.findById(entry.getPerson().getId());
 		
-		if(null == person || !person.isActive()) {
-			throw new PersonException("Usuário já existe ou inativo na base de dados!");
+		if(person == null || !person.get().getActive()) {
+			throw new BadRequestException("Usuário já existe ou inativo na base de dados!");
 		}
 		
 		return entryRepository.save(entry);
@@ -88,11 +87,10 @@ public class EntryService implements EntryInterfaces{
 					.orElseThrow(() -> new NotFoundException("Não há esse usuário: " + entry.getPerson().getId())));
 		}
 		
-		if(person == null || !person.isActive()) {
-			throw new NotFoundException("Esse usuário está fora do sistema - [OFF]: " + person.isActive());
+		if(person == null || !person.getActive()) {
+			throw new NotFoundException("Esse usuário está fora do sistema - [OFF]: " + person.getActive());
 		}
 	}
 
 
 }
-*/

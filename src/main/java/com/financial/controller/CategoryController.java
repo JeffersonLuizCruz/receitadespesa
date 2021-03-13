@@ -1,7 +1,6 @@
 package com.financial.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financial.entity.Category;
-import com.financial.repository.CategoryRepository;
+import com.financial.service.CategoryServiceImpl;
 
 import event.EventLocationHeader;
 
@@ -25,13 +24,13 @@ import event.EventLocationHeader;
 @RequestMapping(value = "categories")
 public class CategoryController {
 	
-	@Autowired private CategoryRepository categoryRepository;
+	@Autowired private CategoryServiceImpl categoryService;
 	@Autowired private ApplicationEventPublisher eventPublisher;
 	
 	
 	@PostMapping
 	public ResponseEntity<Category> save(@RequestBody Category category, HttpServletResponse response){
-		Category saveCategory = categoryRepository.save(category);
+		Category saveCategory = categoryService.save(category);
 		
 		//Adicionando um Location Header no cabeçalho HTTP
 		eventPublisher.publishEvent(new EventLocationHeader(this, response, saveCategory.getId()));
@@ -41,14 +40,14 @@ public class CategoryController {
 	
 	@GetMapping(value = "/{id}")
 	public  ResponseEntity<Category> getById(@PathVariable Long id) {
-		Optional<Category> category = categoryRepository.findById(id);
+		Category category = categoryService.getById(id);
 		
-		return null == category.get() ? ResponseEntity.notFound().build() : ResponseEntity.ok(category.get());
+		return ResponseEntity.ok(category);
 	}
 	
 	@GetMapping
 	public List<Category> listAll() {
-		return categoryRepository.findAll();
+		return categoryService.listAll();
 	}
 
 }
