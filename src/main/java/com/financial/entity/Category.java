@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -35,6 +36,7 @@ public class Category implements Serializable{
 	private String name;
 	
 	@Getter(onMethod_= @JsonIgnore)
+	@Setter(onMethod_= @JsonProperty)
 	@OneToMany(mappedBy = "category")
 	private List<Entry> entry;
 

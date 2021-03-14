@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import com.financial.dto.EntryRequestDto;
 import com.financial.dto.EntryResponseDto;
 import com.financial.entity.Entry;
+import com.financial.entity.page.PageRequestModel;
 
 public interface EntryServiceInterfaces {
 	
@@ -16,11 +17,11 @@ public interface EntryServiceInterfaces {
 	
 	public Entry getById(Long id);
 	
-	public Page<Entry> listAll(EntryRequestDto entryRequestDto, Pageable pageable);
+	public Page<Entry> listAllByOnLazyModel(PageRequestModel prm);
 	
 	public void delete(Long id);
 	
-	public Page<EntryResponseDto> result(EntryRequestDto entryRequestDto, Pageable pageable);
+	public Page<EntryResponseDto> result(EntryRequestDto erd, Pageable pageable);
 	
 
 }
