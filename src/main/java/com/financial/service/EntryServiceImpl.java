@@ -19,6 +19,7 @@ import com.financial.entity.page.PageRequestModel;
 import com.financial.repository.EntryRepository;
 import com.financial.repository.PersonRepository;
 import com.financial.serviceinterfaces.EntryServiceInterfaces;
+import com.financial.specification.EntrySpecification;
 import com.financial.specification.PersonSpecification;
 import com.financial.exceptions.BadRequestException;
 import com.financial.exceptions.NotFoundException;
@@ -67,7 +68,7 @@ public class EntryServiceImpl implements EntryServiceInterfaces{
 	@Override
 	public Page<Entry> listAllByOnLazyModel(PageRequestModel prm) {
 		Pageable pageable = prm.toSpringPageRequest();
-		Specification<Entry> spec = PersonSpecification.search(prm.getSearch());
+		Specification<Entry> spec = EntrySpecification.search(prm.getSearch());
 		
 		Page<Entry> page = personRepository.findAll(spec, pageable);
 		
