@@ -1,4 +1,4 @@
-package com.financial.dto;
+package com.financial.repository.projection;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -6,14 +6,16 @@ import java.time.LocalDate;
 import com.financial.entity.enums.TypeEntry;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-public class EntryResponseDto {
+public class ResultEntry {
 	
 	private Long id;
 	private String description;

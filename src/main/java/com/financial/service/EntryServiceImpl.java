@@ -7,20 +7,16 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import com.financial.dto.EntryRequestDto;
-import com.financial.dto.EntryResponseDto;
 import com.financial.entity.Entry;
 import com.financial.entity.Person;
-import com.financial.entity.page.PageModel;
-import com.financial.entity.page.PageRequestModel;
+
 import com.financial.repository.EntryRepository;
 import com.financial.repository.PersonRepository;
+import com.financial.repository.filter.EntryRequestDto;
+import com.financial.repository.projection.ResultEntry;
 import com.financial.serviceinterfaces.EntryServiceInterfaces;
-import com.financial.specification.EntrySpecification;
-import com.financial.specification.PersonSpecification;
 import com.financial.exceptions.BadRequestException;
 import com.financial.exceptions.NotFoundException;
 
@@ -66,19 +62,10 @@ public class EntryServiceImpl implements EntryServiceInterfaces{
 	}
 
 	@Override
-	public Page<Entry> listAllByOnLazyModel(PageRequestModel prm) {
-		Pageable pageable = prm.toSpringPageRequest();
-		Specification<Entry> spec = EntrySpecification.search(prm.getSearch());
+	public Page<Entry> listAllByOnLazyModel(EntryRequestDto entryRequestDto, Pageable pageable) {
 		
-		Page<Entry> page = personRepository.findAll(spec, pageable);
+		return entryRepository.filter(entryRequestDto, pageable);
 		
-		PageModel<Entry> pm = new PageModel<>(
-							(int)page.getTotalElements(),
-							page.getSize(),
-							page.getTotalPages(),
-							page.getContent());
-		
-		return pm;
 	}
 
 	@Override
@@ -88,9 +75,9 @@ public class EntryServiceImpl implements EntryServiceInterfaces{
 	}
 
 	@Override
-	public Page<EntryResponseDto> result(EntryRequestDto entryRequestDto, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+	public Page<ResultEntry> result(EntryRequestDto entryRequestDto, Pageable pageable) {
+
+		return entryRepository.result(entryRequestDto, pageable);
 	}
 	
 	

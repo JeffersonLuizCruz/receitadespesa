@@ -1,4 +1,4 @@
-package com.financial.dto;
+package com.financial.repository.filter;
 
 import lombok.Getter;
 import lombok.Setter;

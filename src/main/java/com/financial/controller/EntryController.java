@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financial.entity.Entry;
+import com.financial.repository.filter.EntryRequestDto;
 import com.financial.service.EntryServiceImpl;
 
 import event.EventLocationHeader;
@@ -52,5 +55,11 @@ public class EntryController {
 		Entry entry = entryService.getById(id);
 		
 		return entry != null ? ResponseEntity.ok(entry) : ResponseEntity.notFound().build();
+	}
+	
+	@GetMapping
+	public Page<Entry> pesquisar(EntryRequestDto entryRequestDto, Pageable pageable) {
+		
+		return entryService.listAllByOnLazyModel(entryRequestDto, pageable);
 	}
 }
