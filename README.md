@@ -26,7 +26,7 @@ O sistema faz o registro do lançamento gasto ou da receita, com sua respectiva 
 
 ## :page_with_curl: Diagrama de Classe <a name="-diagrama"/></a>
 <h1 align="center">
-    <img alt="Ecommerce" src="https://github.com/JeffersonLuizCruz/financial/blob/main/src/main/resources/tamplates/Classe%20UML3.png" />
+    <img alt="Ecommerce" src="https://github.com/JeffersonLuizCruz/receitadespesa/blob/main/src/uml5.png" />
 </h1>
 
 ## Tecnologia:
