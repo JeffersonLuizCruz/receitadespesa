@@ -52,7 +52,8 @@ As informações da confirmação do pedido são: número, data e horário do pe
 ## Construção do Projeto:
 - [x] Criação de Interface Service (garantir baixo acoplamento)<br>
 - [x] CRUD (ORM Hibernate - Ambiente de teste)<br>
-- [x] Exception Personalizada
+- [x] DTO (Aplicação DTO na camada de Controller)
+- [x] Exception Personalizado(Bad_Request; Not Found ...)
 - [x] Consulta e Busca Paginada
 - [ ] Autenticação e Autorização (JWT)
 
