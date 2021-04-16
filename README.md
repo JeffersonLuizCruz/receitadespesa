@@ -3,7 +3,7 @@
 </h1>
 
 <h3 align="center">
-  REST API E-Commerce - BackEnd - Spring Boot
+  REST API Receita e Despesa - BackEnd - Spring Boot
 </h3>
 
 <p align="center">Lançamento de Receita e Despesa</p>
