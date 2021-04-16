@@ -6,7 +6,7 @@
   REST API E-Commerce - BackEnd - Spring Boot
 </h3>
 
-<p align="center">Exemplo de um Sistema E-Commerce</p>
+<p align="center">Lançamento de Receita e Despesa</p>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/JeffersonLuizCruz/financial)  ![Packagist License](https://img.shields.io/packagist/l/JeffersonLuizCruz/financial)  ![GitHub top language](https://img.shields.io/github/languages/top/JeffersonLuizCruz/financial)  ![GitHub language count](https://img.shields.io/github/languages/count/JeffersonLuizCruz/financial?label=Linguagem%20de%20Programa%C3%A7%C3%A3o)  ![GitHub followers](https://img.shields.io/github/followers/JeffersonLuizCruz?style=social)
 
