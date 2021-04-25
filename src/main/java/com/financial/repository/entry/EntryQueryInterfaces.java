@@ -3,7 +3,7 @@ package com.financial.repository.entry;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.financial.entity.Entry;
+import com.financial.entities.Entry;
 import com.financial.repository.filter.EntryRequestDto;
 import com.financial.repository.projection.ResultEntry;
 

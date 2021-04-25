@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.financial.entity.Category;
+import com.financial.entities.Category;
+import com.financial.repositories.CategoryRepository;
 
 @SpringBootTest
 public class CategoryTest {

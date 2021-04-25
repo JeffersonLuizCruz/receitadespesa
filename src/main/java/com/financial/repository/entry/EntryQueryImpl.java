@@ -16,7 +16,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
 
-import com.financial.entity.Entry;
+import com.financial.entities.Entry;
 import com.financial.repository.filter.EntryRequestDto;
 import com.financial.repository.projection.ResultEntry;
 

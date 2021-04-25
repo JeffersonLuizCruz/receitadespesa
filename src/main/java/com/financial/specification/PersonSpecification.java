@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.ObjectUtils;
 
-import com.financial.entity.Person;
+import com.financial.entities.Person;
 import com.financial.repository.filter.PersonRequestDto;
 
 public class PersonSpecification {
