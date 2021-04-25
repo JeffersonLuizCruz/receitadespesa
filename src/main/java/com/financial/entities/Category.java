@@ -1,17 +1,12 @@
 package com.financial.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -24,7 +19,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Getter @Setter
-@Entity(name = "category")
+@Entity
 public class Category implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -32,12 +27,6 @@ public class Category implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(length = 50, nullable = false, unique = true)
 	private String name;
-	
-	@Getter(onMethod_= @JsonIgnore)
-	@Setter(onMethod_= @JsonProperty)
-	@OneToMany(mappedBy = "category")
-	private List<Entry> entry;
 
 }

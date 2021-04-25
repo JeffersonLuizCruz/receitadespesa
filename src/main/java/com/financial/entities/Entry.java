@@ -14,8 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.financial.entities.enums.TypeEntry;
 
 import lombok.AllArgsConstructor;
@@ -28,7 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Getter @Setter
-@Entity(name = "entry")
+@Entity
 public class Entry implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -39,12 +37,9 @@ public class Entry implements Serializable{
 	@Column(columnDefinition = "text")
 	private String description;
 
-
-	@Column(nullable = false, updatable = true)
 	private LocalDate expirationDate;
 
 	private LocalDate paymentDate;
-
 
 	private BigDecimal amount;
 
@@ -56,14 +51,10 @@ public class Entry implements Serializable{
 	@Column(nullable = false)
 	private TypeEntry type;
 
-	@Getter(onMethod_= @JsonIgnore)
-	@Setter(onMethod_= @JsonProperty)
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
 
-	@Getter(onMethod_= @JsonIgnore)
-	@Setter(onMethod_= @JsonProperty)
 	@ManyToOne
 	@JoinColumn(name = "person_id")
 	private Person person;

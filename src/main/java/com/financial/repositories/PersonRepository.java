@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.financial.entities.Person;
 
-
+@Repository
 public interface PersonRepository extends JpaRepository<Person, Long>, JpaSpecificationExecutor<Person>{
 
 }
