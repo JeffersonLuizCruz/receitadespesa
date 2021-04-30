@@ -40,7 +40,7 @@ public class EntryServiceImpl implements EntryService{
 
 	@Override
 	public Entry update(Long id, Entry entry) {
-		Entry saveByEntry = getById(id);
+		Entry saveByEntry = verifyIfExists(id);
 		try {
 			
 			if(!entry.getPerson().equals(saveByEntry.getPerson())) {
@@ -50,33 +50,33 @@ public class EntryServiceImpl implements EntryService{
 		} catch (NullPointerException e) {
 			
 		}
-		BeanUtils.copyProperties(entry, saveByEntry, "id", "paymentDate", "expirationDate");
+		BeanUtils.copyProperties(entry, saveByEntry, "id");
 		return entryRepository.save(saveByEntry);
 	}
 
 	@Override
-	public Entry getById(Long id) {
-		Optional<Entry> result = entryRepository.findById(id);
-		return result.orElseThrow(() -> new NotFoundException("Não existe lançamento com esse id: " + id));
+	public Entry findById(Long id) {
+		
+		return verifyIfExists(id);
 	}
 
 	@Override
-	public Page<Entry> listAllByOnLazyModel(EntryFilter entryRequestDto, Pageable pageable) {
+	public Page<Entry> listAll(EntryFilter entryFilter, Pageable pageable) {
 		
-		return entryRepository.filter(entryRequestDto, pageable);
+		return entryRepository.filter(entryFilter, pageable);
 		
 	}
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
+		entryRepository.deleteById(id);
 		
 	}
 
 	@Override
-	public Page<ResultEntry> result(EntryFilter entryRequestDto, Pageable pageable) {
+	public Page<ResultEntry> result(EntryFilter entryFilter, Pageable pageable) {
 
-		return entryRepository.result(entryRequestDto, pageable);
+		return entryRepository.result(entryFilter, pageable);
 	}
 	
 	
@@ -91,6 +91,11 @@ public class EntryServiceImpl implements EntryService{
 		if(person == null || !person.getActive()) {
 			throw new NotFoundException("Esse usuário está fora do sistema - [OFF]: " + person.getActive());
 		}
+	}
+	
+	private Entry verifyIfExists(Long id) {
+		Optional<Entry> result = entryRepository.findById(id);
+		return result.orElseThrow(() -> new NotFoundException("Não existe lançamento com esse id: " + id));
 	}
 
 

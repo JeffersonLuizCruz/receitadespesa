@@ -11,15 +11,10 @@ public interface EntryService {
 	
 	
 	public Entry save(Entry entry);
-	
 	public Entry update(Long id, Entry entry);
-	
-	public Entry getById(Long id);
-	
-	public Page<Entry> listAllByOnLazyModel(EntryFilter entryRequestDtp, Pageable pageable);
-	
+	public Entry findById(Long id);
+	public Page<Entry> listAll(EntryFilter entryFilter, Pageable pageable);
 	public void delete(Long id);
-	
 	public Page<ResultEntry> result(EntryFilter erd, Pageable pageable);
 	
 
