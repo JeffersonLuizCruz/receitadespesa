@@ -1,5 +1,6 @@
 package com.financial.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -36,6 +37,14 @@ public class PersonServiceImpl implements PersonService{
 	public Person findById(Long id) {
 		return verifyIfExists(id);
 	}
+	
+	@Override
+	public List<Person> listAll() {
+		List<Person> result = personRepository.findAll();
+		
+		return result;
+	}
+	
 
 	@Override
 	public void delete(Long id) {

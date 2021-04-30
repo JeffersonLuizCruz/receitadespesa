@@ -32,7 +32,6 @@ public class CategoryController {
 	public ResponseEntity<Category> save(@RequestBody Category category, HttpServletResponse response){
 		Category saveCategory = categoryService.save(category);
 		
-		//Adicionando um Location Header no cabeçalho HTTP
 		eventPublisher.publishEvent(new EventLocationHeader(this, response, saveCategory.getId()));
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(saveCategory);

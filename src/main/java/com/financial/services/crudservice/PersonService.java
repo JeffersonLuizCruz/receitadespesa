@@ -1,18 +1,17 @@
 package com.financial.services.crudservice;
 
+import java.util.List;
+
 import com.financial.entities.Person;
 
 
 public interface PersonService {
 	
-	
-	public Person save(Person person);
-	
-	public Person update(Long id, Person person);
-
-	public Person findById(Long id);
-	
-	public void delete(Long id);
+	Person save(Person person);
+	Person update(Long id, Person person);
+	Person findById(Long id);
+	List<Person> listAll();
+	void delete(Long id);
 	
 
 }

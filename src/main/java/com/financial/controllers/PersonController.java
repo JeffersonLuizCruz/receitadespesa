@@ -1,6 +1,8 @@
 package com.financial.controllers;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -36,7 +38,6 @@ public class PersonController {
 	public ResponseEntity<Person> save(@RequestBody Person person, HttpServletResponse response){
 		Person savePerson = personService.save(person);
 		
-		//Adiciona o Location do recurso criado
 		eventPublisher.publishEvent(new EventLocationHeader(this, response, savePerson.getId()));
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(savePerson);
@@ -68,8 +69,10 @@ public class PersonController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<Person> listAll(){
-			return null;
+	public ResponseEntity<List<Person>> listAll(){
+		List<Person> list = personService.listAll();
+		
+			return ResponseEntity.ok(list);
 		}
 	
 	@DeleteMapping(value = "/{id}")
