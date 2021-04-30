@@ -1,8 +1,4 @@
-package com.financial.repository.person;
-/**
- * Bug
- * 
-package com.financial.repository.query;
+package com.financial.repositories.person;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,56 +18,53 @@ import org.springframework.data.domain.Pageable;
 
 import org.springframework.util.ObjectUtils;
 
-import com.financial.dto.PageRequestModel;
-import com.financial.entity.Person;
+import com.financial.entities.Person;
+import com.financial.repositories.filter.PersonFilter;
 
-@Deprecated
-public class PersonQueryImpl implements PersonQueryInterfaces{
+
+public class PersonQueryImpl implements PersonQuery{
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Override
-	public Page<Person> findByPerson(PageRequestModel personRequestDto, Pageable pageable) {
-		
+	public Page<Person> findByPerson(PersonFilter personFilter, Pageable pageable) {
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<Person> criteriaQuery = criteriaBuilder.createQuery(Person.class);
 		
 		Root<Person> root = criteriaQuery.from(Person.class);
-		//
-		Predicate[] predicates = this.criarRestricoes(personRequestDto, criteriaBuilder, root);
+
+		Predicate[] predicates = this.criarRestricoes(personFilter, criteriaBuilder, root);
 		criteriaQuery.where(predicates);
-		//
+
 		TypedQuery<Person> typedQuery = entityManager.createQuery(criteriaQuery);
 		adicionarRestricaoDePaginacao(typedQuery, pageable);
 		
-		//
-		return new PageImpl<>(typedQuery.getResultList(), pageable, this.total(personRequestDto));
+
+		return new PageImpl<>(typedQuery.getResultList(), pageable, this.total(personFilter));
 	}
 	
 
-	private Predicate[] criarRestricoes(PageRequestModel personRequestDto, CriteriaBuilder criteriaBuilder, Root<Person> root) {
-		
+	private Predicate[] criarRestricoes(PersonFilter personFilter, CriteriaBuilder criteriaBuilder, Root<Person> root) {
 		List<Predicate> listaPredicates = new ArrayList<>();
 		
-		if(!ObjectUtils.isEmpty(personRequestDto.getName())) {
+		if(!ObjectUtils.isEmpty(personFilter.getName())) {
 			listaPredicates.add(criteriaBuilder.like(
 									criteriaBuilder.lower(root.get("name")), 
-									"%"+personRequestDto.getName()+"%"));
+									"%"+personFilter.getName()+"%"));
 		}
 		
-		if(!ObjectUtils.isEmpty(personRequestDto.getActive())) {
+		if(!ObjectUtils.isEmpty(personFilter.getActive())) {
 			listaPredicates.add(criteriaBuilder.equal(
 									root.get("active"), 
-									personRequestDto.getActive()));
+									personFilter.getActive()));
 		}
 		
 		return listaPredicates.toArray(new Predicate[listaPredicates.size()]);
 	}
 	
 	private void adicionarRestricaoDePaginacao(TypedQuery<?> typedQuery, Pageable pageable) {
-		
 		int paginaAtual = pageable.getPageNumber();
 		int totalRegistroPorPagina = pageable.getPageSize();
 		int primeiroRegistroDaPagina = paginaAtual * totalRegistroPorPagina;
@@ -80,8 +73,7 @@ public class PersonQueryImpl implements PersonQueryInterfaces{
 		typedQuery.setMaxResults(totalRegistroPorPagina);
 	}
 	
-	private Long total(PageRequestModel pessoaFilter) {
-		
+	private Long total(PersonFilter pessoaFilter) {
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
@@ -99,4 +91,3 @@ public class PersonQueryImpl implements PersonQueryInterfaces{
 	}
 
 }
-*/

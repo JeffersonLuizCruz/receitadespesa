@@ -9,18 +9,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.financial.repository.filter.EntryRequestDto;
-import com.financial.repository.projection.ResultEntry;
-import com.financial.services.crudservice.EntryServiceInterfaces;
+import com.financial.services.crudservice.EntryService;
 import com.financial.services.exceptions.BadRequestException;
 import com.financial.services.exceptions.NotFoundException;
 import com.financial.entities.Entry;
 import com.financial.entities.Person;
 import com.financial.repositories.EntryRepository;
 import com.financial.repositories.PersonRepository;
+import com.financial.repositories.filter.EntryFilter;
+import com.financial.repositories.projection.ResultEntry;
 
 @Service
-public class EntryServiceImpl implements EntryServiceInterfaces{
+public class EntryServiceImpl implements EntryService{
 
 	
 	@Autowired private PersonRepository personRepository;
@@ -61,7 +61,7 @@ public class EntryServiceImpl implements EntryServiceInterfaces{
 	}
 
 	@Override
-	public Page<Entry> listAllByOnLazyModel(EntryRequestDto entryRequestDto, Pageable pageable) {
+	public Page<Entry> listAllByOnLazyModel(EntryFilter entryRequestDto, Pageable pageable) {
 		
 		return entryRepository.filter(entryRequestDto, pageable);
 		
@@ -74,7 +74,7 @@ public class EntryServiceImpl implements EntryServiceInterfaces{
 	}
 
 	@Override
-	public Page<ResultEntry> result(EntryRequestDto entryRequestDto, Pageable pageable) {
+	public Page<ResultEntry> result(EntryFilter entryRequestDto, Pageable pageable) {
 
 		return entryRepository.result(entryRequestDto, pageable);
 	}

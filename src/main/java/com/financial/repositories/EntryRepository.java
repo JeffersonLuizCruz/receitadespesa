@@ -4,10 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.financial.entities.Entry;
-import com.financial.repository.entry.EntryQueryInterfaces;
+import com.financial.repositories.entry.EntryQuery;
 
 
 @Repository
-public interface EntryRepository extends JpaRepository<Entry, Long>, EntryQueryInterfaces{
+public interface EntryRepository extends JpaRepository<Entry, Long>, EntryQuery{
 
 }

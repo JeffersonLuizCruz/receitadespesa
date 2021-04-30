@@ -12,7 +12,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.ObjectUtils;
 
 import com.financial.entities.Person;
-import com.financial.repository.filter.PersonRequestDto;
+import com.financial.repositories.filter.PersonFilter;
 
 public class PersonSpecification {
 
@@ -23,7 +23,7 @@ public class PersonSpecification {
 
 			@SuppressWarnings("unused")
 			public Predicate[] t(Root<Person> root, final CriteriaQuery<?> query, final CriteriaBuilder cb) {
-				PersonRequestDto personRequestDto = new PersonRequestDto();
+				PersonFilter personRequestDto = new PersonFilter();
 				
 				List<Predicate> listPredicates = new ArrayList<>();
 

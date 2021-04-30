@@ -1,4 +1,4 @@
-package com.financial.repository.entry;
+package com.financial.repositories.entry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,35 +17,35 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
 
 import com.financial.entities.Entry;
-import com.financial.repository.filter.EntryRequestDto;
-import com.financial.repository.projection.ResultEntry;
+import com.financial.repositories.filter.EntryFilter;
+import com.financial.repositories.projection.ResultEntry;
 
 
-public class EntryQueryImpl implements EntryQueryInterfaces{
+public class EntryQueryImpl implements EntryQuery{
 
 	@PersistenceContext
 	private EntityManager entityManager;
 	
 	@Override
-	public Page<Entry> filter(EntryRequestDto entryRequestDto, Pageable pageable) {
+	public Page<Entry> filter(EntryFilter entryFilter, Pageable pageable) {
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<Entry> criteriaQuery = criteriaBuilder.createQuery(Entry.class);
 		
 		Root<Entry> root = criteriaQuery.from(Entry.class);
 		
-		Predicate[] predicates = this.createRestriction(entryRequestDto, criteriaBuilder, root);
+		Predicate[] predicates = this.createRestriction(entryFilter, criteriaBuilder, root);
 		criteriaQuery.where(predicates);
 		
 		TypedQuery<Entry> typedQuery = entityManager.createQuery(criteriaQuery);
 		addRestrictionToPage(typedQuery, pageable);
 		
 		
-		return new PageImpl<>(typedQuery.getResultList(), pageable, this.total(entryRequestDto));
+		return new PageImpl<>(typedQuery.getResultList(), pageable, this.total(entryFilter));
 	}
 
 	@Override
-	public Page<ResultEntry> result(EntryRequestDto entryRequestDto, Pageable pageable) {
+	public Page<ResultEntry> result(EntryFilter entryRequestDto, Pageable pageable) {
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<ResultEntry> criteria = builder.createQuery(ResultEntry.class);
 		
@@ -67,13 +67,13 @@ public class EntryQueryImpl implements EntryQueryInterfaces{
 		return new PageImpl<>(query.getResultList(), pageable, total(entryRequestDto));
 	}
 	
-	private Long total(EntryRequestDto entryRequestDto) {
+	private Long total(EntryFilter entryFilter) {
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
 		
 		Root<Entry> root = criteriaQuery.from(Entry.class);
 		
-		Predicate[] predicates = this.createRestriction(entryRequestDto, criteriaBuilder, root);
+		Predicate[] predicates = this.createRestriction(entryFilter, criteriaBuilder, root);
 		
 		criteriaQuery.where(predicates);
 		criteriaQuery.select(criteriaBuilder.count(root));
@@ -83,8 +83,7 @@ public class EntryQueryImpl implements EntryQueryInterfaces{
 	}
 	
 	@SuppressWarnings("unused")
-	private void addRestrictionToPage(TypedQuery<?> typedQuery, Pageable pageable) {
-		
+	private void addRestrictionToPage(TypedQuery<?> typedQuery, Pageable pageable) {	
 		int currentPage = pageable.getPageNumber(); // Página Atual
 		int TotalPageRegistration = pageable.getPageSize(); // Total de Registro de Página
 		int primeiroRegistroDaPagina = currentPage * TotalPageRegistration;
@@ -93,26 +92,25 @@ public class EntryQueryImpl implements EntryQueryInterfaces{
 		typedQuery.setMaxResults(TotalPageRegistration);
 	}
 	
-	private Predicate[] createRestriction(EntryRequestDto entryRequestDto, CriteriaBuilder criteriaBuilder, Root<Entry> root) {
-		
+	private Predicate[] createRestriction(EntryFilter entryFilter, CriteriaBuilder criteriaBuilder, Root<Entry> root) {
 		List<Predicate> listaPredicates = new ArrayList<>();
 		
-		if(!ObjectUtils.isEmpty(entryRequestDto.getDescricao())) {
+		if(!ObjectUtils.isEmpty(entryFilter.getDescricao())) {
 			listaPredicates.add(criteriaBuilder.like(
 									criteriaBuilder.lower(root.get("descricao")), 
-									"%"+entryRequestDto.getDescricao()+"%"));
+									"%"+entryFilter.getDescricao()+"%"));
 		}
 		
-		if(null != entryRequestDto.getDataVencimentoDe()) {
+		if(null != entryFilter.getDataVencimentoDe()) {
 			listaPredicates.add(criteriaBuilder.greaterThanOrEqualTo(
 									root.get("dataVencimento"), 
-									entryRequestDto.getDataVencimentoDe()));
+									entryFilter.getDataVencimentoDe()));
 		}
 		
-		if(null != entryRequestDto.getDataVencimentoAte()) {
+		if(null != entryFilter.getDataVencimentoAte()) {
 			listaPredicates.add(criteriaBuilder.lessThanOrEqualTo(
 									root.get("dataVencimento"), 
-									entryRequestDto.getDataVencimentoAte()));
+									entryFilter.getDataVencimentoAte()));
 		}
 		
 		return listaPredicates.toArray(new Predicate[listaPredicates.size()]);

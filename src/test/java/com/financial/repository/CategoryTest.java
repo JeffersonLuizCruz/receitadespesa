@@ -20,7 +20,7 @@ public class CategoryTest {
 	
 	@Test
 	public void saveTest() {
-		Category category = new Category(null, "Alimentos", null);
+		Category category = new Category(null, "Alimentos");
 		Category saveCategory = categoryRepository.save(category);
 		
 		assertThat(saveCategory.getId()).isEqualTo(1L);

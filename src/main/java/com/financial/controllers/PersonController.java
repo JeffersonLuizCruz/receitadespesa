@@ -1,6 +1,5 @@
 package com.financial.controllers;
 
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -17,14 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financial.dto.ActivePersonRequestDto;
 import com.financial.entities.Person;
-import com.financial.services.crudservice.PersonServiceInterfaces;
-import com.financial.services.pagemodel.PageModel;
-import com.financial.services.pagemodel.PageRequestModel;
+import com.financial.services.crudservice.PersonService;
 
 import event.EventLocationHeader;
 
@@ -32,7 +28,7 @@ import event.EventLocationHeader;
 @RequestMapping(value = "persons")
 public class PersonController {
 	
-	@Autowired private PersonServiceInterfaces personService;
+	@Autowired private PersonService personService;
 	@Autowired private ApplicationEventPublisher eventPublisher;
 	
 	
@@ -56,7 +52,7 @@ public class PersonController {
 	
 	@PatchMapping(value = "/{id}/active")
 	public void updateActivePerson(@PathVariable Long id,@Valid @RequestBody ActivePersonRequestDto active) {
-		Person person = personService.getById(id);
+		Person person = personService.findById(id);
 		person.setActive(active.transformToActive());
 		
 		personService.save(person);
@@ -65,19 +61,15 @@ public class PersonController {
 	
 	@GetMapping(value = "/{id}")
 	public  ResponseEntity<Person> getById(@PathVariable Long id) {
-		Person person = personService.getById(id);
+		Person person = personService.findById(id);
 		
 		return ResponseEntity.ok(person);
 		
 	}
 	
 	@GetMapping
-	public ResponseEntity<PageModel<Person>> listAll(
-			@RequestParam Map<String, String> params){
-			PageRequestModel pr = new PageRequestModel(params);
-			PageModel<Person> pm = personService.listAllByOnLazyModel(pr);
-			
-			return ResponseEntity.ok(pm);
+	public ResponseEntity<Person> listAll(){
+			return null;
 		}
 	
 	@DeleteMapping(value = "/{id}")

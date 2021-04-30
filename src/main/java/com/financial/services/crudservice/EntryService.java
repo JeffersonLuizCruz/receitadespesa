@@ -4,10 +4,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.financial.entities.Entry;
-import com.financial.repository.filter.EntryRequestDto;
-import com.financial.repository.projection.ResultEntry;
+import com.financial.repositories.filter.EntryFilter;
+import com.financial.repositories.projection.ResultEntry;
 
-public interface EntryServiceInterfaces {
+public interface EntryService {
 	
 	
 	public Entry save(Entry entry);
@@ -16,11 +16,11 @@ public interface EntryServiceInterfaces {
 	
 	public Entry getById(Long id);
 	
-	public Page<Entry> listAllByOnLazyModel(EntryRequestDto entryRequestDtp, Pageable pageable);
+	public Page<Entry> listAllByOnLazyModel(EntryFilter entryRequestDtp, Pageable pageable);
 	
 	public void delete(Long id);
 	
-	public Page<ResultEntry> result(EntryRequestDto erd, Pageable pageable);
+	public Page<ResultEntry> result(EntryFilter erd, Pageable pageable);
 	
 
 }

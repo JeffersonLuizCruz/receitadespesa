@@ -1,10 +1,10 @@
-package com.financial.repository.filter;
+package com.financial.repositories.filter;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class PersonRequestDto {
+public class PersonFilter {
 	
 	private String name;
 	private Boolean active;

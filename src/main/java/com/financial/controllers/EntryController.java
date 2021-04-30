@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financial.entities.Entry;
-import com.financial.repository.filter.EntryRequestDto;
+import com.financial.repositories.filter.EntryFilter;
 import com.financial.services.EntryServiceImpl;
 
 import event.EventLocationHeader;
@@ -58,7 +58,7 @@ public class EntryController {
 	}
 	
 	@GetMapping
-	public Page<Entry> pesquisar(EntryRequestDto entryRequestDto, Pageable pageable) {
+	public Page<Entry> pesquisar(EntryFilter entryRequestDto, Pageable pageable) {
 		
 		return entryService.listAllByOnLazyModel(entryRequestDto, pageable);
 	}

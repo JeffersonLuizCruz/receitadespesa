@@ -1,4 +1,4 @@
-package com.financial.repository.projection;
+package com.financial.repositories.projection;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package com.financial.repository.filter;
+package com.financial.repositories.filter;
 
 import java.time.LocalDate;
 
@@ -9,7 +9,7 @@ import lombok.Setter;
 
 
 @Getter @Setter
-public class EntryRequestDto {
+public class EntryFilter {
 	
 	private String descricao;
 	

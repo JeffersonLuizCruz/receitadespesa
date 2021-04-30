@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.financial.entities.Category;
 import com.financial.repositories.CategoryRepository;
-import com.financial.services.crudservice.CategoryServiceInterfaces;
+import com.financial.services.crudservice.CategoryService;
 import com.financial.services.exceptions.NotFoundException;
 
 @Service
-public class CategoryServiceImpl implements CategoryServiceInterfaces{
+public class CategoryServiceImpl implements CategoryService{
 	
 	@Autowired private CategoryRepository categoryRepository;
 
