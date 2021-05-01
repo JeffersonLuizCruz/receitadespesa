@@ -27,9 +27,7 @@ public class Person implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String name;
-	
 	private Boolean active;
 	
 	@Embedded

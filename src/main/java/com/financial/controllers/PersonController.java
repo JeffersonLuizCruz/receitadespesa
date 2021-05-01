@@ -52,7 +52,7 @@ public class PersonController {
 	}
 	
 	@PatchMapping(value = "/{id}/active")
-	public void updateActivePerson(@PathVariable Long id,@Valid @RequestBody ActivePersonRequestDto active) {
+	public void updateActive(@PathVariable Long id,@Valid @RequestBody ActivePersonRequestDto active) {
 		Person person = personService.findById(id);
 		person.setActive(active.transformToActive());
 		
@@ -76,8 +76,9 @@ public class PersonController {
 		}
 	
 	@DeleteMapping(value = "/{id}")
-	public void delete(@PathVariable Long id) {
-		personService.delete(id);
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
+		personService.findById(id);
+		return ResponseEntity.noContent().build();
 		
 	}
 	
