@@ -21,7 +21,7 @@
 
 > Esse projeto consiste na criação de um núcleo base de uma aplicação de Controle Financeiro.
 
-O sistema faz o registro do lançamento gasto ou da receita, com sua respectiva data do pagamento e data do vencimento. Na parte de lançamento ainda é possível inserir uma descrição e uma observação para o valor a ser lançado. Apenas o administrador é capaz de fazer qualquer alteração no sistema enquanto os usuários comuns têm acesso apenas de leitura. É obrigatório eu fazer um lançamento escolher qual categoria esse lançamento faz parte.
+O sistema faz o registro do lançamento gasto ou da receita, com sua respectiva data do pagamento e data do vencimento. Na parte de lançamento ainda é possível inserir uma descrição e uma observação para o valor a ser lançado. Apenas o administrador é capaz de fazer qualquer alteração no sistema enquanto os usuários comuns têm acesso apenas de leitura. É obrigatório ao fazer um lançamento escolher qual categoria esse lançamento faz parte.
 
 
 ## :page_with_curl: Diagrama de Classe <a name="-diagrama"/></a>
