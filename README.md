@@ -19,7 +19,7 @@
 
 ## :page_with_curl: Sobre o projeto <a name="-sobre"/></a>
 
-> Esse projeto consiste na criação de um núcleo base de uma aplicação de Controle Financeiro.
+> Simples API REST com objetivo apenas de criar um CRUD para entender o funcionamento do JPA
 
 O sistema faz o registro do lançamento gasto ou da receita, com sua respectiva data do pagamento e data do vencimento. Na parte de lançamento ainda é possível inserir uma descrição e uma observação para o valor a ser lançado. Apenas o administrador é capaz de fazer qualquer alteração no sistema enquanto os usuários comuns têm acesso apenas de leitura. É obrigatório ao fazer um lançamento escolher qual categoria esse lançamento faz parte.
 
